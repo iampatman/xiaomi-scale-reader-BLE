@@ -12,6 +12,7 @@
 		2A873CA51F70E5EF00ED680D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A873CA31F70E5EF00ED680D /* Main.storyboard */; };
 		2A873CA71F70E5EF00ED680D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A873CA61F70E5EF00ED680D /* Assets.xcassets */; };
 		2A873CAA1F70E5EF00ED680D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A873CA81F70E5EF00ED680D /* LaunchScreen.storyboard */; };
+		2A873CB31F70E5FC00ED680D /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A873CB21F70E5FC00ED680D /* CoreBluetooth.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		2A873CA61F70E5EF00ED680D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2A873CA91F70E5EF00ED680D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2A873CAB1F70E5EF00ED680D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2A873CB21F70E5FC00ED680D /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +31,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2A873CB31F70E5FC00ED680D /* CoreBluetooth.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,6 +43,7 @@
 			children = (
 				2A873C9E1F70E5EF00ED680D /* BLE */,
 				2A873C9D1F70E5EF00ED680D /* Products */,
+				2A873CB11F70E5FC00ED680D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -62,6 +66,14 @@
 				2A873CAB1F70E5EF00ED680D /* Info.plist */,
 			);
 			path = BLE;
+			sourceTree = "<group>";
+		};
+		2A873CB11F70E5FC00ED680D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2A873CB21F70E5FC00ED680D /* CoreBluetooth.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -263,6 +275,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = VBEVMP5SLB;
 				INFOPLIST_FILE = BLE/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = vn.sporthub.BLE;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -276,6 +289,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = VBEVMP5SLB;
 				INFOPLIST_FILE = BLE/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = vn.sporthub.BLE;
 				PRODUCT_NAME = "$(TARGET_NAME)";
