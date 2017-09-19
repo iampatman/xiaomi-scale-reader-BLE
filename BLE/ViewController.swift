@@ -11,7 +11,7 @@ import CoreBluetooth
 import QuartzCore
 
 
-let DEVICE_INFO_SERVICE = "0x180A"
+let DEVICE_INFO_SERVICE = "180A"
 
 let MANUFACTURER_NAME_CHARACTERISTIC_UUID = "2A29"
 class ViewController: UIViewController {
@@ -55,22 +55,20 @@ extension ViewController: CBCentralManagerDelegate  {
 
 	func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
 		print("didDiscover peripheral")
-		print(RSSI)
+		print("Signal strength: \(RSSI)")
+		if self.device == peripheral {
+			print("Deuplicated")
+			return
+		}
 		guard let name = peripheral.name  else {
 			return
 		}
 		print(name)
-		//let name = advertisementData[CBAdvertisementDataLocalNameKey] as? String
-		//print(name!)
-		
 		central.connect(peripheral, options: nil)
 		peripheral.delegate = self
-		device = peripheral
-		central.stopScan()
-//
-//		if (name?.characters.count)! > 0 {
-//			central.connect(peripheral, options: nil)
-//		}
+		self.device = peripheral
+//		central.stopScan()
+
 	}
 	
 	func centralManagerDidUpdateState(_ central: CBCentralManager) {
