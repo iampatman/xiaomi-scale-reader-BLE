@@ -15,13 +15,14 @@ let DEVICE_INFO_SERVICE = "0x180A"
 
 let MANUFACTURER_NAME_CHARACTERISTIC_UUID = "2A29"
 class ViewController: UIViewController {
-	
+	var device: CBPeripheral?
 	var centralManager: CBCentralManager?
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		let services: [CBUUID] = [CBUUID(string: DEVICE_INFO_SERVICE)]
 		let centralManager = CBCentralManager(delegate: self, queue: nil)
-		centralManager.scanForPeripherals(withServices: services, options: nil)
+		centralManager.scanForPeripherals(withServices: nil, options: nil)
+		//centralManager.scanForPeripherals(withServices: services, options: nil)
 		self.centralManager = centralManager
 		
 		// Do any additional setup after loading the view, typically from a nib.
@@ -45,26 +46,38 @@ class ViewController: UIViewController {
 
 extension ViewController: CBCentralManagerDelegate  {
 	func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
-		peripheral.delegate = self
+		print("didConnect peripheral")
 		peripheral.discoverServices(nil)
+		peripheral.delegate = self
 		print(peripheral.state == .connected ? "Connected" : "Not connected")
 	}
 	
 
 	func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
-		//NSString *localName = [advertisementData objectForKey:CBAdvertisementDataLocalNameKey];
-		let name = advertisementData[CBAdvertisementDataLocalNameKey] as? String
-		if (name?.characters.count)! > 0 {
-			central.connect(peripheral, options: nil)
+		print("didDiscover peripheral")
+		print(RSSI)
+		guard let name = peripheral.name  else {
+			return
 		}
 		print(name)
+		//let name = advertisementData[CBAdvertisementDataLocalNameKey] as? String
+		//print(name!)
+		
+		central.connect(peripheral, options: nil)
+		peripheral.delegate = self
+		device = peripheral
+		central.stopScan()
+//
+//		if (name?.characters.count)! > 0 {
+//			central.connect(peripheral, options: nil)
+//		}
 	}
 	
 	func centralManagerDidUpdateState(_ central: CBCentralManager) {
-		print(central.state.rawValue)
 		switch central.state {
 		case .poweredOn:
 			print("powered on")
+			central.scanForPeripherals(withServices: nil, options: nil)
 			break;
 		case .unauthorized:
 			print("unauthorized")
@@ -85,6 +98,7 @@ extension ViewController: CBCentralManagerDelegate  {
 
 extension ViewController: CBPeripheralDelegate{
 	func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
+		print("didDiscoverServices")
 		peripheral.services?.forEach {
 			print("Service discovered: \($0.uuid)")
 			peripheral.discoverCharacteristics(nil, for: $0)
@@ -92,8 +106,10 @@ extension ViewController: CBPeripheralDelegate{
 	}
 	
 	func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
+		print("didDiscoverCharacteristicsFor")
 		service.characteristics?.forEach({ (char) in
-			if char.uuid.isEqual(MANUFACTURER_NAME_CHARACTERISTIC_UUID){
+			print("Characteristic discovered: \(char.uuid.uuidString)")
+			if char.uuid.uuidString.isEqual(MANUFACTURER_NAME_CHARACTERISTIC_UUID){
 				peripheral.readValue(for: char)
 				//peripheral.setNotifyValue(true, for: char)
 			}
@@ -101,7 +117,9 @@ extension ViewController: CBPeripheralDelegate{
 	}
 	
 	func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
-		if (characteristic.uuid.isEqual(MANUFACTURER_NAME_CHARACTERISTIC_UUID)){
+		print("didUpdateValueFor")
+
+		if (characteristic.uuid.uuidString.isEqual(MANUFACTURER_NAME_CHARACTERISTIC_UUID)){
 			getMacnufacturer(fromCharacteristic: characteristic)
 		}
 	}
