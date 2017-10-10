@@ -17,6 +17,14 @@ class HealthKitAssistant {
 		case dataTypeNotAvailable
 	}
 	
+	
+	class func isHealthDataAvailable() -> Bool {
+		guard HKHealthStore.isHealthDataAvailable() else {
+			return false;
+		}
+		return true;
+	}
+	
 	class func authorizeHealthKit(completion: @escaping (Bool) -> Void){
 		//1. Check to see if HealthKit Is Available on this device
 		guard HKHealthStore.isHealthDataAvailable() else {

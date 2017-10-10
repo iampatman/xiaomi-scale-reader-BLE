@@ -17,12 +17,17 @@ class WriteDataViewController: UITableViewController {
 	
     override func viewDidLoad() {
         super.viewDidLoad()
+		txtBloodGlucose.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-
+	
+	
+	override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+		view.endEditing(true)
+	}
 	
 	@IBAction func saveValue(){
 		guard let value = Double.init(txtBloodGlucose.text!) else {
@@ -35,13 +40,10 @@ class WriteDataViewController: UITableViewController {
 	
 	func saveBloodGlucoseSample(bloodGlucose: Double, date: Date) {
   
-		//1.  Make sure the body mass type exists
 		guard let bodyMassIndexType = HKQuantityType.quantityType(forIdentifier: .bloodGlucose) else {
 			fatalError("Blood Gluclose Type is no longer available in HealthKit")
 		}
-		
-		//2.  Use the Count HKUnit to create a body mass quantity
-		//let milligramPerDeciLiter = HKUnit.gramUnit(with: .milli).unitDivided(by: HKUnit.literUnit(with: .deci))
+
 		let mmolpLUnit = HKUnit.moleUnit(with: HKMetricPrefix.milli,
 		                                molarMass: HKUnitMolarMassBloodGlucose).unitDivided(by: HKUnit.liter())
 		let bloogGlucoseQuantity = HKQuantity(unit: mmolpLUnit,
@@ -52,7 +54,6 @@ class WriteDataViewController: UITableViewController {
                                              start: date,
                                              end: date)
 		
-		//3.  Save the same to HealthKit
 		HKHealthStore().save(bloodGlucoseSample) { (success, error) in
 			
 			if let error = error {
@@ -68,8 +69,11 @@ class WriteDataViewController: UITableViewController {
 			}
 		}
 	}
-	
+}
 
 
-
+extension WriteDataViewController: UITextFieldDelegate {
+	func textFieldDidEndEditing(_ textField: UITextField) {
+		textField.resignFirstResponder()
+	}
 }

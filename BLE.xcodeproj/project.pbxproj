@@ -17,6 +17,8 @@
 		2A8BDF611F7C9B4F006A4CF4 /* HealthDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8BDF601F7C9B4F006A4CF4 /* HealthDataViewController.swift */; };
 		2A8BDF641F7CAA35006A4CF4 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A8BDF631F7CAA35006A4CF4 /* HealthKit.framework */; };
 		2A8BDF6A1F7CCA3C006A4CF4 /* HealthKitAssistant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8BDF691F7CCA3C006A4CF4 /* HealthKitAssistant.swift */; };
+		2ACAD5191F8769E50020294A /* MiScaleAssistant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACAD5181F8769E50020294A /* MiScaleAssistant.swift */; };
+		2ACAD51B1F876A350020294A /* MiScaleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACAD51A1F876A350020294A /* MiScaleViewController.swift */; };
 		2AE2DBE01F823CF700F31112 /* HKBiologicalSex+StringRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE2DBDE1F823CF700F31112 /* HKBiologicalSex+StringRepresentation.swift */; };
 		2AE2DBE11F823CF700F31112 /* HKBloodType+StringRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE2DBDF1F823CF700F31112 /* HKBloodType+StringRepresentation.swift */; };
 /* End PBXBuildFile section */
@@ -35,6 +37,8 @@
 		2A8BDF621F7CAA35006A4CF4 /* BLE.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BLE.entitlements; sourceTree = "<group>"; };
 		2A8BDF631F7CAA35006A4CF4 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		2A8BDF691F7CCA3C006A4CF4 /* HealthKitAssistant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthKitAssistant.swift; sourceTree = "<group>"; };
+		2ACAD5181F8769E50020294A /* MiScaleAssistant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiScaleAssistant.swift; sourceTree = "<group>"; };
+		2ACAD51A1F876A350020294A /* MiScaleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiScaleViewController.swift; sourceTree = "<group>"; };
 		2AE2DBDE1F823CF700F31112 /* HKBiologicalSex+StringRepresentation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HKBiologicalSex+StringRepresentation.swift"; sourceTree = "<group>"; };
 		2AE2DBDF1F823CF700F31112 /* HKBloodType+StringRepresentation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HKBloodType+StringRepresentation.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -84,6 +88,8 @@
 				2A8BDF601F7C9B4F006A4CF4 /* HealthDataViewController.swift */,
 				2A8BDF691F7CCA3C006A4CF4 /* HealthKitAssistant.swift */,
 				2A2B4DED1F83317D00161B56 /* WriteDataViewController.swift */,
+				2ACAD5181F8769E50020294A /* MiScaleAssistant.swift */,
+				2ACAD51A1F876A350020294A /* MiScaleViewController.swift */,
 			);
 			path = BLE;
 			sourceTree = "<group>";
@@ -176,6 +182,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				2A2B4DEE1F83317D00161B56 /* WriteDataViewController.swift in Sources */,
+				2ACAD5191F8769E50020294A /* MiScaleAssistant.swift in Sources */,
+				2ACAD51B1F876A350020294A /* MiScaleViewController.swift in Sources */,
 				2AE2DBE01F823CF700F31112 /* HKBiologicalSex+StringRepresentation.swift in Sources */,
 				2AE2DBE11F823CF700F31112 /* HKBloodType+StringRepresentation.swift in Sources */,
 				2A873CA21F70E5EF00ED680D /* ViewController.swift in Sources */,
